@@ -31,8 +31,25 @@
 #define isfinite(x) __builtin_isfinite(x)
 #define signbit(x)  __builtin_signbit(x)
 
+#define FP_NAN       0
+#define FP_INFINITE  1
+#define FP_ZERO      2
+#define FP_SUBNORMAL 3
+#define FP_NORMAL    4
+
+#define fpclassify(x) __builtin_fpclassify(FP_NAN, FP_INFINITE, FP_NORMAL, FP_SUBNORMAL, FP_ZERO, (x))
+#define isnormal(x)   (fpclassify(x) == FP_NORMAL)
+#define isgreater(x, y)        __builtin_isgreater((x), (y))
+#define isgreaterequal(x, y)   __builtin_isgreaterequal((x), (y))
+#define isless(x, y)           __builtin_isless((x), (y))
+#define islessequal(x, y)      __builtin_islessequal((x), (y))
+#define islessgreater(x, y)    __builtin_islessgreater((x), (y))
+#define isunordered(x, y)      __builtin_isunordered((x), (y))
+
 // ── 函数声明 ──
 double fabs(double x);
+double fmax(double x, double y);
+double fmin(double x, double y);
 double ceil(double x);
 double floor(double x);
 double trunc(double x);
@@ -42,8 +59,17 @@ double modf(double x, double *iptr);
 double copysign(double x, double y);
 double sqrt(double x);
 double scalbn(double x, int n);
+double ldexp(double x, int n);
+double frexp(double x, int* e);
+double logb(double x);
+double nextafter(double x, double y);
+double nan(const char* s);
+double hypot(double x, double y);
+double cbrt(double x);
+double log2(double x);
 
 double exp(double x);
+double exp2(double x);
 double expm1(double x);
 double log(double x);
 double log1p(double x);
