@@ -31,6 +31,15 @@
 #define isfinite(x) __builtin_isfinite(x)
 #define signbit(x)  __builtin_signbit(x)
 
+#define fpclassify(x) __builtin_fpclassify(0, 1, 2, 3, 4, (x))
+#define isnormal(x)   (fpclassify(x) == 2)
+#define isgreater(x, y)        __builtin_isgreater((x), (y))
+#define isgreaterequal(x, y)   __builtin_isgreaterequal((x), (y))
+#define isless(x, y)           __builtin_isless((x), (y))
+#define islessequal(x, y)      __builtin_islessequal((x), (y))
+#define islessgreater(x, y)    __builtin_islessgreater((x), (y))
+#define isunordered(x, y)      __builtin_isunordered((x), (y))
+
 // ── 函数声明 ──
 double fabs(double x);
 double ceil(double x);
