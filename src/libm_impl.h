@@ -31,6 +31,10 @@ typedef float   float_t;
 #define isfinite(x)  __builtin_isfinite(x)
 #define signbit(x)   __builtin_signbit(x)
 
+double frexp(double x, int* e);
+double remainder(double x, double y);
+double nearbyint(double x);
+
 // ── musl 内部开关 ──
 // 支持非就近舍入模式 / 支持 SNaN / 目标平台取整内建
 #define WANT_ROUNDING 1

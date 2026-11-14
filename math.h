@@ -31,8 +31,45 @@
 #define isfinite(x) __builtin_isfinite(x)
 #define signbit(x)  __builtin_signbit(x)
 
+#define FP_NAN       0
+#define FP_INFINITE  1
+#define FP_ZERO      2
+#define FP_SUBNORMAL 3
+#define FP_NORMAL    4
+
+#define fpclassify(x) __builtin_fpclassify(FP_NAN, FP_INFINITE, FP_NORMAL, FP_SUBNORMAL, FP_ZERO, (x))
+#define isnormal(x)   (fpclassify(x) == FP_NORMAL)
+#define isgreater(x, y)        __builtin_isgreater((x), (y))
+#define isgreaterequal(x, y)   __builtin_isgreaterequal((x), (y))
+#define isless(x, y)           __builtin_isless((x), (y))
+#define islessequal(x, y)      __builtin_islessequal((x), (y))
+#define islessgreater(x, y)    __builtin_islessgreater((x), (y))
+#define isunordered(x, y)      __builtin_isunordered((x), (y))
+
 // ── 函数声明 ──
+float sinf(float x);
+float cosf(float x);
+float tanf(float x);
+float sqrtf(float x);
+float scalbnf(float x, int n);
+float hypotf(float x, float y);
+float cbrtf(float x);
+float fabsf(float x);
+float floorf(float x);
+float ceilf(float x);
+float expf(float x);
+float logf(float x);
+float log10f(float x);
+float truncf(float x);
+float roundf(float x);
+float fmaxf(float x, float y);
+float fminf(float x, float y);
+float ldexpf(float x, int n);
+float fmodf(float x, float y);
+float powf(float x, float y);
 double fabs(double x);
+double fmax(double x, double y);
+double fmin(double x, double y);
 double ceil(double x);
 double floor(double x);
 double trunc(double x);
@@ -42,8 +79,17 @@ double modf(double x, double *iptr);
 double copysign(double x, double y);
 double sqrt(double x);
 double scalbn(double x, int n);
+double ldexp(double x, int n);
+double frexp(double x, int* e);
+double logb(double x);
+double nextafter(double x, double y);
+double nan(const char* s);
+double hypot(double x, double y);
+double cbrt(double x);
+double log2(double x);
 
 double exp(double x);
+double exp2(double x);
 double expm1(double x);
 double log(double x);
 double log1p(double x);
@@ -61,5 +107,23 @@ double atan2(double y, double x);
 double sinh(double x);
 double cosh(double x);
 double tanh(double x);
+
+double asinh(double x);
+double acosh(double x);
+double atanh(double x);
+double fdim(double x, double y);
+double scalbln(double x, long n);
+int ilogb(double x);
+double exp10(double x);
+double remainder(double x, double y);
+double remquo(double x, double y, int* q);
+
+double nearbyint(double x);
+double rint(double x);
+long lrint(double x);
+long long llrint(double x);
+long lround(double x);
+long long llround(double x);
+
 
 #endif
